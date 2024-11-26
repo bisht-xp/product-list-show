@@ -5,6 +5,7 @@ import { products } from "../../dummyData";
 import useClickOutside from "../hooks/useClickOutside";
 import { useDispatch, useSelector } from "react-redux";
 import { addProduct } from "../store/features/product/productSlice";
+// import { useQueryProduct } from "../hooks/useQueryProduct";
 
 const Modal = ({ index, cancel }) => {
   const modalRef = useRef(null);

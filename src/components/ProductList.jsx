@@ -1,4 +1,3 @@
-import React, { useEffect, useState } from "react";
 import Product from "./Product";
 import DropdownProvider from "./DropdownProvider";
 import { useDispatch, useSelector } from "react-redux";
@@ -6,41 +5,11 @@ import {
   createComponent,
   updateProductOrder,
 } from "../store/features/product/productSlice";
-import {
-  rectSortingStrategy,
-  SortableContext,
-  sortableKeyboardCoordinates,
-  verticalListSortingStrategy,
-} from "@dnd-kit/sortable";
-import {
-  closestCorners,
-  DndContext,
-  KeyboardSensor,
-  PointerSensor,
-  useSensor,
-  useSensors,
-} from "@dnd-kit/core";
-import { Reorder, useDragControls } from "motion/react";
+import { Reorder } from "motion/react";
 
 const ProductList = () => {
   const { allProducts } = useSelector((store) => store.product);
   const dispatch = useDispatch();
-
-  const handleDragEnd = (event) => {
-    const { active, over } = event;
-
-    if (active.id !== over.id) {
-      const oldIndex = allProducts.findIndex(
-        (product) => product.id === active.id
-      );
-      const newIndex = allProducts.findIndex(
-        (product) => product.id === over.id
-      );
-
-      const reorderedProducts = arrayMove(allProducts, oldIndex, newIndex);
-      dispatch(updateProductOrder(reorderedProducts));
-    }
-  };
 
   const handleReorder = (newOrder) => {
     dispatch(updateProductOrder(newOrder));
